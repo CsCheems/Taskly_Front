@@ -19,7 +19,7 @@ export default function Home() {
     useEffect(() => {
         async function loadTasks() {
         try {
-            const response = await fetch('http://localhost:8000/api/tasks' );
+            const response = await fetch('https://taskly-deno.onrender.com/api/tasks' );
             if (!response.ok) {
             throw new Error('La respuesta del servidor no fue OK');
             }

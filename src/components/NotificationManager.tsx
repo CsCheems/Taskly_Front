@@ -37,7 +37,7 @@ export default function NotificationManager({ isSubscribed, setIsSubscribed }: N
             userVisibleOnly: true,
             applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
         });
-        await fetch('http://localhost:8000/api/subscribe', {
+        await fetch('https://taskly-deno.onrender.com/api/subscribe', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(sub ),
@@ -56,7 +56,7 @@ export default function NotificationManager({ isSubscribed, setIsSubscribed }: N
     };
     
     const handleSendTestNotification = async () => {
-        await fetch('http://localhost:8000/api/send-notification', { method: 'POST' } );
+        await fetch('https://taskly-deno.onrender.com/api/send-notification', { method: 'POST' } );
     };
 
     return (
