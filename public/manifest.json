@@ -1,0 +1,16 @@
+{
+    "name": "Tasky PWA",
+    "short_name": "Tasky",
+    "description": "Una aplicación de gestión de tareas progresiva y moderna.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#673ab7",
+    "icons": [
+        {
+        "src": "/logo/taskly-logo.png",
+        "sizes": "192x192",
+        "type": "image/png"
+        }
+    ]
+}
