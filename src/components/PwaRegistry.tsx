@@ -4,8 +4,6 @@ import { useEffect } from 'react';
 
 export default function PwaRegistry() {
     useEffect(() => {
-        // Este código solo se ejecuta en el cliente y una sola vez.
-        // Nos aseguramos de que solo se ejecute en producción.
         if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/sw.js', { scope: '/' })
@@ -18,7 +16,5 @@ export default function PwaRegistry() {
         });
         }
     }, []);
-
-    // Este componente no renderiza nada visible en la UI.
     return null;
 }
