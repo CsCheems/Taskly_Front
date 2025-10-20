@@ -157,7 +157,7 @@ export async function subscribeToPushNotifications(publicKey: string) {
       applicationServerKey: new Uint8Array(urlBase64ToUint8Array(publicKey).buffer) as BufferSource,
     });
 
-    await fetch('https://taskly-deno.onrender.com/api/subscribe', {
+    await fetch('https://taskly-back.onrender.com/api/subscribe', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -3,7 +3,7 @@
  * Maneja reintentos, caché y sincronización offline
  */
 
-const API_BASE_URL = 'https://taskly-deno.onrender.com/api';
+const API_BASE_URL = 'https://taskly-back.onrender.com/api';
 const TIMEOUT = 10000; // 10 segundos
 
 interface FetchOptions {
