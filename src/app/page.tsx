@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Splash from '@/components/Splash';
-const Home = dynamic(() => import('@/components/Home'), {
+const AppShell = dynamic(() => import('@/components/AppShell'), {
   ssr: false,
 });
 
@@ -16,20 +16,19 @@ export default function Page() {
       setIsFadingOut(true);
 
       const fadeOutTimer = setTimeout(() => {
-
         setIsLoading(false);
-      }, 500); 
+      }, 500);
 
-    
       return () => clearTimeout(fadeOutTimer);
-    }, 1500); 
+    }, 1500);
 
     return () => clearTimeout(initialLoadTimer);
   }, []);
 
   return (
     <main>
-      {isLoading ? <Splash isFadingOut={isFadingOut} /> : <Home />}
+      {isLoading ? <Splash isFadingOut={isFadingOut} /> : <AppShell />}
     </main>
   );
 }
+

@@ -1,20 +1,28 @@
 'use client';
 
 import { useEffect } from 'react';
+import { registerServiceWorker } from '@/lib/service-worker-utils';
 
 export default function PwaRegistry() {
-    useEffect(() => {
-        if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js', { scope: '/' })
-            .then(registration => {
-                console.log('✅ Service Worker registrado manualmente con éxito. Scope:', registration.scope);
-            })
-            .catch(error => {
-                console.error('❌ Error al registrar el Service Worker manualmente:', error);
-            });
-        });
-        }
-    }, []);
-    return null;
+  useEffect(() => {
+    // Registrar Service Worker cuando la página carga
+    const registerWorker = async () => {
+      try {
+        await registerServiceWorker();
+      } catch (error) {
+        console.error('Error al registrar Service Worker:', error);
+      }
+    };
+
+    // Esperar a que el documento esté completamente cargado
+    if (document.readyState === 'loading') {
+      window.addEventListener('load', registerWorker);
+      return () => window.removeEventListener('load', registerWorker);
+    } else {
+      registerWorker();
+    }
+  }, []);
+
+  return null;
 }
+

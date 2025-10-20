@@ -24,7 +24,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
     "tailwindcss": "^4",
-    "typescript": "^5",
-    "workbox-cli": "^7.3.0"
+    "typescript": "^5"
+
   }
 }
