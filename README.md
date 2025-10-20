@@ -33,11 +33,11 @@ Configuración y Ejecución
 
 Para poner en marcha el proyecto localmente:
 
-1. Clonar el repositorio:
+1. Clonar el repositorio
 
-2. Instalar dependencias:
+2. Instalar dependencias
 
-3. Iniciar el servidor de desarrollo:
+3. Iniciar el servidor de desarrollo
 
 La aplicación estará accesible en http://localhost:10000.
 
