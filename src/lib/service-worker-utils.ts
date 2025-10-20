@@ -154,10 +154,9 @@ export async function subscribeToPushNotifications(publicKey: string) {
     const registration = await navigator.serviceWorker.ready;
     const subscription = await registration.pushManager.subscribe({
       userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(publicKey),
+      applicationServerKey: new Uint8Array(urlBase64ToUint8Array(publicKey).buffer) as BufferSource,
     });
 
-    // Enviar suscripción al servidor
     await fetch('https://taskly-deno.onrender.com/api/subscribe', {
       method: 'POST',
       headers: {
@@ -174,20 +173,21 @@ export async function subscribeToPushNotifications(publicKey: string) {
   }
 }
 
+
 /**
  * Convertir clave VAPID de base64 a Uint8Array
  */
 function urlBase64ToUint8Array(base64String: string): Uint8Array {
   const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
-  const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
-
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-
+  const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+  const rawData = atob(base64);
+  const buffer = new ArrayBuffer(rawData.length);
+  const outputArray = new Uint8Array(buffer);
+  
   for (let i = 0; i < rawData.length; ++i) {
     outputArray[i] = rawData.charCodeAt(i);
   }
-
+  
   return outputArray;
 }
 
